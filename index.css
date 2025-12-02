@@ -60,3 +60,41 @@
   /* For fallback/text-shadow combo */
   animation: flicker-glow 4s infinite step-end;
 }
+
+/* 3. PIXEL EFFECT (Checkerboard Flow) */
+@keyframes pixel-slide {
+  0% { background-position: 0 0; }
+  100% { background-position: 20px 20px; }
+}
+
+.effect-pixel {
+  color: transparent; /* Hide actual text color */
+  background-color: #334155; /* Fallback dark slate */
+  /* Create a checkerboard pattern using gradients */
+  background-image: 
+    linear-gradient(45deg, #1e293b 25%, transparent 25%), 
+    linear-gradient(-45deg, #1e293b 25%, transparent 25%), 
+    linear-gradient(45deg, transparent 75%, #1e293b 75%), 
+    linear-gradient(-45deg, transparent 75%, #1e293b 75%);
+  background-size: 10px 10px;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: pixel-slide 1s linear infinite;
+  /* Ensure readability by adding a slight text stroke or shadow if needed, but clean looks better */
+  filter: contrast(1.2);
+}
+
+/* 4. PSYCHE EFFECT (Ink Blur/Dissolve) */
+/* This relies on the SVG filter #inkFilter defined in Portal.tsx */
+@keyframes ink-breathe {
+  0%, 100% { opacity: 0.8; filter: url(#inkFilter) blur(0px); }
+  50% { opacity: 0.6; filter: url(#inkFilter) blur(1px); }
+}
+
+.effect-psyche {
+  color: #0f172a;
+  /* Apply the turbulence filter defined in HTML/SVG */
+  filter: url(#inkFilter);
+  /* Gentle breathing animation to make the ink look 'alive' or slowly drying */
+  animation: ink-breathe 6s ease-in-out infinite;
+}

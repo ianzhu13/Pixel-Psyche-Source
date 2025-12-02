@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from 'react';
 import { ViewState } from '../types';
 import { Brain, Heart, Grip } from 'lucide-react';
@@ -22,9 +20,13 @@ const Portal: React.FC<PortalProps> = ({ onChangeView }) => {
     <div className="h-screen flex flex-col items-center justify-center relative p-6">
       {/* Intro Text */}
       <div className={`text-center mb-16 transition-all duration-1000 ease-out transform ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <h1 className="text-4xl md:text-6xl font-light tracking-wider text-slate-800 mb-4 font-serif">
-          Pixel & Psyche
+        {/* Main Title with Special Effects */}
+        <h1 className="text-4xl md:text-6xl font-light tracking-wider mb-4 font-serif flex items-center justify-center gap-3 md:gap-4 flex-wrap">
+          <span className="effect-pixel font-mono font-bold tracking-tighter">Pixel</span>
+          <span className="text-slate-300 font-light">&</span>
+          <span className="effect-psyche">Psyche</span>
         </h1>
+        
         <div className="h-px w-24 bg-slate-800/20 mx-auto mb-6" />
         <p className="text-lg md:text-xl text-slate-600 font-light font-sans max-w-2xl mx-auto leading-relaxed">
           {t.tagline}
@@ -87,6 +89,20 @@ const Portal: React.FC<PortalProps> = ({ onChangeView }) => {
           <span className="text-sm font-light tracking-wide">{t.portal.intersectionBtn}</span>
         </button>
       </div>
+
+      {/* SVG Filters Definition for Psyche Effect */}
+      <svg className="absolute w-0 h-0 pointer-events-none">
+        <defs>
+          <filter id="inkFilter">
+            {/* Create turbulence (ink texture) */}
+            <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="4" result="turbulence" />
+            {/* Displace the source text based on the turbulence */}
+            <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="4" xChannelSelector="R" yChannelSelector="G" />
+            {/* Blur slightly to blend */}
+            <feGaussianBlur stdDeviation="0.5" />
+          </filter>
+        </defs>
+      </svg>
     </div>
   );
 };
