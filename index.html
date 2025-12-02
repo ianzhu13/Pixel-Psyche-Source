@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pixel & Psyche | The Logic of Code, The Poetry of Being</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+      /* Custom animations for the background blobs */
+      @keyframes float {
+        0% { transform: translate(0px, 0px) scale(1); }
+        33% { transform: translate(30px, -50px) scale(1.1); }
+        66% { transform: translate(-20px, 20px) scale(0.9); }
+        100% { transform: translate(0px, 0px) scale(1); }
+      }
+      @keyframes float-delayed {
+        0% { transform: translate(0px, 0px) scale(1); }
+        33% { transform: translate(-30px, 50px) scale(0.9); }
+        66% { transform: translate(20px, -20px) scale(1.1); }
+        100% { transform: translate(0px, 0px) scale(1); }
+      }
+      .animate-float {
+        animation: float 15s ease-in-out infinite;
+      }
+      .animate-float-delayed {
+        animation: float-delayed 18s ease-in-out infinite;
+      }
+      /* Hide scrollbar for clean glass look */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.1); 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 0, 0, 0.25); 
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://esm.run/@google/genai"
+  }
+}
+</script>
+</head>
+  <body class="bg-gray-50 text-slate-800 antialiased overflow-hidden">
+    <div id="root"></div>
+  </body>
+</html>
