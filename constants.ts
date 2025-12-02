@@ -1,4 +1,5 @@
 
+
 import { TranslationContent, Language, GithubConfig } from './types';
 
 // =============================================================================
@@ -65,7 +66,7 @@ export const TRANSLATIONS: Record<Language, TranslationContent> = {
       cinemaLog: "Cinema Log",
       readingCosmos: "Reading Cosmos",
       seriesLabel: "Episodic Narratives",
-      podcastLabel: "Audio Frequencies",
+      podcastLabel: "Podcasts",
       languageQuote: "\"To have another language is to possess a second soul.\" — Charlemagne"
     },
     intersection: {
@@ -282,7 +283,7 @@ export const TRANSLATIONS: Record<Language, TranslationContent> = {
       cinemaLog: "光影笔记",
       readingCosmos: "文字宇宙",
       seriesLabel: "剧集叙事",
-      podcastLabel: "声音频率",
+      podcastLabel: "播客",
       languageQuote: "“拥有第二门语言，就像拥有了第二个灵魂。” —— 查理曼大帝"
     },
     intersection: {
@@ -453,7 +454,7 @@ export const TRANSLATIONS: Record<Language, TranslationContent> = {
       {
         year: '2020',
         title: '医疗影像项目',
-        description: '我的代码第一次直接影响了病人的诊断。责任的重量沉淀下来。'
+        description: '我的代码第一次直接影响了病人的诊断。责任的重量沉澱下来。'
       }
     ]
   },
@@ -499,7 +500,7 @@ export const TRANSLATIONS: Record<Language, TranslationContent> = {
       cinemaLog: "光影筆記",
       readingCosmos: "文字宇宙",
       seriesLabel: "劇集敘事",
-      podcastLabel: "聲音頻率",
+      podcastLabel: "播客",
       languageQuote: "「擁有第二門語言，就像擁有了第二個靈魂。」 —— 查理曼大帝"
     },
     intersection: {
@@ -573,7 +574,7 @@ export const TRANSLATIONS: Record<Language, TranslationContent> = {
         title: '銀翼殺手 2049',
         type: 'movie',
         quote: "所有最好的記憶都是她的。",
-        comment: "從《攻殼機動隊》到《銀翼殺手》，我痴迷於「意識」與「記憶」的迷思。是我們定義了記憶，還是記憶定義了我們？",
+        comment: "從《攻壳機動隊》到《銀翼殺手》，我痴迷於「意識」與「記憶」的迷思。是我們定義了記憶，還是記憶定義了我們？",
         link: "https://movie.douban.com/subject/10512661/"
       }
     ],
@@ -665,7 +666,7 @@ export const TRANSLATIONS: Record<Language, TranslationContent> = {
       {
         year: '2018',
         title: '第一次獨自看電影',
-        description: '在空蕩的影院看了《2001太空漫遊》。意識到沉默比喧囂更有力量。'
+        description: '在空蕩的影院看了《2001太空漫游》。意識到沉默比喧囂更有力量。'
       },
       {
         year: '2020',
@@ -716,7 +717,7 @@ export const TRANSLATIONS: Record<Language, TranslationContent> = {
       cinemaLog: "シネマログ",
       readingCosmos: "読書宇宙",
       seriesLabel: "エピソードの物語",
-      podcastLabel: "音声周波数",
+      podcastLabel: "ポッドキャスト",
       languageQuote: "「別の言語を持つことは、第二の魂を持つことである。」— カール大帝"
     },
     intersection: {
@@ -933,7 +934,7 @@ export const TRANSLATIONS: Record<Language, TranslationContent> = {
       cinemaLog: "Kino-Logbuch",
       readingCosmos: "Lese-Kosmos",
       seriesLabel: "Episodische Erzählungen",
-      podcastLabel: "Audio-Frequenzen",
+      podcastLabel: "Podcasts",
       languageQuote: "„Eine andere Sprache zu haben, bedeutet, eine zweite Seele zu besitzen.“ — Karl der Große"
     },
     intersection: {
@@ -1150,7 +1151,7 @@ export const TRANSLATIONS: Record<Language, TranslationContent> = {
       cinemaLog: "Journal Cinéma",
       readingCosmos: "Cosmos de Lecture",
       seriesLabel: "Récits Épisodiques",
-      podcastLabel: "Fréquences Audio",
+      podcastLabel: "Podcasts",
       languageQuote: "« Avoir une autre langue, c'est posséder une deuxième âme. » — Charlemagne"
     },
     intersection: {

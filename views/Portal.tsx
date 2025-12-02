@@ -1,3 +1,5 @@
+
+
 import React, { useEffect, useState } from 'react';
 import { ViewState } from '../types';
 import { Brain, Heart, Grip } from 'lucide-react';
@@ -8,17 +10,18 @@ interface PortalProps {
 }
 
 const Portal: React.FC<PortalProps> = ({ onChangeView }) => {
-  const [loaded, setLoaded] = useState(false);
+  const loaded = true; // Simplified as it's just render logic
   const { t } = useLanguage();
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    setLoaded(true);
+    setIsLoaded(true);
   }, []);
 
   return (
     <div className="h-screen flex flex-col items-center justify-center relative p-6">
       {/* Intro Text */}
-      <div className={`text-center mb-16 transition-all duration-1000 ease-out transform ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <div className={`text-center mb-16 transition-all duration-1000 ease-out transform ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <h1 className="text-4xl md:text-6xl font-light tracking-wider text-slate-800 mb-4 font-serif">
           Pixel & Psyche
         </h1>
@@ -32,28 +35,28 @@ const Portal: React.FC<PortalProps> = ({ onChangeView }) => {
       </div>
 
       {/* The Two Doors */}
-      <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl transition-all duration-1000 delay-300 transform ${loaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+      <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl transition-all duration-1000 delay-300 transform ${isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
         
-        {/* The Lab (Logic) */}
+        {/* The Lab (Logic) - Monochrome/Gray Theme */}
         <button 
           onClick={() => onChangeView('lab')}
           className="group relative h-64 md:h-80 rounded-3xl overflow-hidden transition-all duration-500 hover:scale-[1.02] focus:outline-none bg-white/40 shadow-sm hover:shadow-md"
         >
-          {/* Light gradient background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-cyan-50/50 backdrop-blur-md border border-white/60 group-hover:border-cyan-200 transition-colors" />
+          {/* Light Gray gradient background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-100/50 to-slate-100/50 backdrop-blur-md border border-white/60 group-hover:border-slate-400 transition-colors" />
           
           <div className="absolute inset-0 bg-slate-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center">
-             <span className="text-cyan-600 text-sm tracking-widest uppercase mb-2 font-mono">{t.portal.labCta}</span>
+             <span className="text-slate-600 text-sm tracking-widest uppercase mb-2 font-mono">{t.portal.labCta}</span>
           </div>
           
           <div className="relative h-full flex flex-col items-center justify-center p-8 text-center z-10">
-            <Brain className="w-12 h-12 text-cyan-600 mb-4 opacity-70 group-hover:scale-110 transition-transform duration-500" />
+            <Brain className="w-12 h-12 text-slate-800 mb-4 opacity-70 group-hover:scale-110 transition-transform duration-500" />
             <h2 className="text-2xl font-sans font-light text-slate-800 mb-2">{t.portal.labTitle}</h2>
             <p className="text-sm text-slate-500 font-light">{t.portal.labDesc}</p>
           </div>
         </button>
 
-        {/* The Sanctuary (Emotion) */}
+        {/* The Sanctuary (Emotion) - Rose/Amber Theme */}
         <button 
           onClick={() => onChangeView('sanctuary')}
           className="group relative h-64 md:h-80 rounded-3xl overflow-hidden transition-all duration-500 hover:scale-[1.02] focus:outline-none bg-white/40 shadow-sm hover:shadow-md"
@@ -75,7 +78,7 @@ const Portal: React.FC<PortalProps> = ({ onChangeView }) => {
       </div>
 
       {/* Intersection Entry */}
-      <div className={`mt-12 transition-all duration-1000 delay-500 ${loaded ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`mt-12 transition-all duration-1000 delay-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
         <button 
           onClick={() => onChangeView('intersection')}
           className="flex items-center gap-3 px-6 py-3 rounded-full bg-white/40 hover:bg-white/70 border border-white/60 hover:border-slate-300 backdrop-blur-sm transition-all text-slate-600 hover:text-slate-900 shadow-sm"

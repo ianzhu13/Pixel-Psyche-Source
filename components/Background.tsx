@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import { ViewState } from '../types';
 
@@ -28,9 +30,9 @@ const Background: React.FC<BackgroundProps> = ({ view }) => {
         <div className="absolute top-[10%] right-[20%] w-[40%] h-[40%] rounded-full bg-amber-100/40 blur-[100px]" />
       </div>
 
-      {/* Cool overlay for "Lab" feel mixed in */}
+      {/* Neutral/Gray overlay for "Lab" feel mixed in (Monochrome) */}
       <div className={`absolute inset-0 transition-opacity duration-1000 ${view === 'lab' ? 'opacity-60' : 'opacity-0'}`}>
-        <div className="absolute bottom-[10%] right-[10%] w-[50%] h-[50%] rounded-full bg-cyan-100/40 blur-[130px]" />
+        <div className="absolute bottom-[10%] right-[10%] w-[50%] h-[50%] rounded-full bg-gray-300/40 blur-[130px]" />
       </div>
       
       {/* Noise Texture Overlay for grit - kept subtle */}
