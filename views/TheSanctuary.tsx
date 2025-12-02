@@ -1,11 +1,82 @@
 
 import React from 'react';
 import GlassCard from '../components/GlassCard';
-import { Film, BookOpen, Feather, Tv, Headphones } from 'lucide-react';
+import { Film, BookOpen, Feather, Tv, Headphones, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useContent } from '../hooks/useContent';
+import { MediaItem } from '../types';
+import SpecialTitle from '../components/SpecialTitle';
 
 const TheSanctuary: React.FC = () => {
   const { t } = useLanguage();
+  
+  // Use hooks for dynamic content, falling back to translation file if needed
+  const { data: movies } = useContent<MediaItem>('movies');
+  const { data: books } = useContent<MediaItem>('books');
+  const { data: series } = useContent<MediaItem>('series');
+  const { data: podcasts } = useContent<MediaItem>('podcasts');
+
+  const renderMediaCard = (item: MediaItem, accentColor: 'rose' | 'amber' | 'slate', Icon?: any) => {
+    // Determine gradient based on accent
+    const gradients = {
+      rose: "from-white/60 to-rose-50/30",
+      amber: "from-white/60 to-amber-50/30",
+      slate: "from-white/60 to-slate-50/30",
+    };
+
+    const borderColors = {
+      rose: "border-rose-300/50",
+      amber: "border-amber-300/50",
+      slate: "border-slate-300/50",
+    };
+
+    const CardContent = (
+      <GlassCard variant="interactive" className={`p-8 h-full flex flex-col bg-gradient-to-b ${gradients[accentColor]} relative group`}>
+          {item.link && (
+            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <ExternalLink className="w-4 h-4 text-slate-400" />
+            </div>
+          )}
+
+          <div className="flex justify-between items-baseline mb-2">
+            {/* Use SpecialTitle for Movies and Series */}
+            {item.type === 'movie' || item.type === 'series' ? (
+               <SpecialTitle title={item.title} className="text-xl mb-1" />
+            ) : (
+               <h3 className="text-xl font-serif text-slate-900 mb-1">{item.title}</h3>
+            )}
+            
+            {item.subtitle && <span className="text-xs text-slate-400 uppercase tracking-widest ml-2">{item.subtitle}</span>}
+          </div>
+          
+          <div className={`w-8 h-0.5 bg-${accentColor}-300/50 mb-6`} />
+          
+          <blockquote className={`mb-6 pl-4 border-l-2 ${borderColors[accentColor]} italic text-slate-600 font-serif text-lg leading-relaxed`}>
+            "{item.quote}"
+          </blockquote>
+          
+          <p className="text-sm text-slate-500 font-sans leading-relaxed mt-auto">
+            {item.comment}
+          </p>
+      </GlassCard>
+    );
+
+    if (item.link) {
+      return (
+        <a 
+          key={item.id} 
+          href={item.link} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="block h-full"
+        >
+          {CardContent}
+        </a>
+      );
+    }
+
+    return <div key={item.id} className="h-full">{CardContent}</div>;
+  };
 
   return (
     <div className="w-full max-w-5xl mx-auto pb-20">
@@ -27,22 +98,7 @@ const TheSanctuary: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {t.movies.map(movie => (
-              <div key={movie.id} className="relative group">
-                <GlassCard variant="interactive" className="p-8 h-full flex flex-col bg-gradient-to-b from-white/60 to-white/20">
-                   <h3 className="text-xl font-serif text-slate-900 mb-1">{movie.title}</h3>
-                   <div className="w-8 h-0.5 bg-rose-300/50 mb-6" />
-                   
-                   <blockquote className="mb-6 pl-4 border-l-2 border-slate-300 italic text-slate-600 font-serif text-lg">
-                     "{movie.quote}"
-                   </blockquote>
-                   
-                   <p className="text-sm text-slate-500 font-sans leading-relaxed mt-auto">
-                     {movie.comment}
-                   </p>
-                </GlassCard>
-              </div>
-            ))}
+            {movies.map(movie => renderMediaCard(movie, 'rose'))}
           </div>
         </section>
 
@@ -55,25 +111,7 @@ const TheSanctuary: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            {t.books.map(book => (
-              <div key={book.id} className="relative group">
-                <GlassCard variant="interactive" className="p-8 h-full flex flex-col bg-gradient-to-b from-white/60 to-white/20">
-                   <div className="flex justify-between items-baseline mb-2">
-                     <h3 className="text-xl font-serif text-slate-900">{book.title}</h3>
-                     <span className="text-xs text-slate-400 uppercase tracking-widest">{book.subtitle}</span>
-                   </div>
-                   <div className="w-8 h-0.5 bg-amber-300/50 mb-6" />
-                   
-                   <blockquote className="mb-6 pl-4 border-l-2 border-amber-300/50 italic text-slate-600 font-serif text-lg">
-                     "{book.quote}"
-                   </blockquote>
-                   
-                   <p className="text-sm text-slate-500 font-sans leading-relaxed mt-auto">
-                     {book.comment}
-                   </p>
-                </GlassCard>
-              </div>
-            ))}
+            {books.map(book => renderMediaCard(book, 'amber'))}
           </div>
         </section>
 
@@ -86,13 +124,7 @@ const TheSanctuary: React.FC = () => {
                <span>{t.sanctuary.seriesLabel}</span>
              </div>
              <div className="space-y-6">
-                {t.series.map(series => (
-                  <GlassCard key={series.id} variant="interactive" className="p-6 bg-white/40">
-                     <h3 className="text-lg font-serif text-slate-900 mb-2">{series.title}</h3>
-                     <p className="text-sm text-slate-500 italic mb-2">"{series.quote}"</p>
-                     <p className="text-xs text-slate-400 font-sans">{series.comment}</p>
-                  </GlassCard>
-                ))}
+                {series.map(item => renderMediaCard(item, 'slate'))}
              </div>
           </section>
 
@@ -103,16 +135,7 @@ const TheSanctuary: React.FC = () => {
                <span>{t.sanctuary.podcastLabel}</span>
              </div>
              <div className="space-y-6">
-                {t.podcasts.map(podcast => (
-                  <GlassCard key={podcast.id} variant="interactive" className="p-6 bg-white/40">
-                     <div className="flex justify-between items-baseline mb-2">
-                        <h3 className="text-lg font-serif text-slate-900">{podcast.title}</h3>
-                        {podcast.subtitle && <span className="text-xs text-slate-400">{podcast.subtitle}</span>}
-                     </div>
-                     <p className="text-sm text-slate-500 italic mb-2">"{podcast.quote}"</p>
-                     <p className="text-xs text-slate-400 font-sans">{podcast.comment}</p>
-                  </GlassCard>
-                ))}
+                {podcasts.map(item => renderMediaCard(item, 'slate'))}
              </div>
           </section>
         </div>

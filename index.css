@@ -16,3 +16,47 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.25); 
 }
+
+/* 
+  SPECIAL TEXT EFFECTS 
+  Designed for Light Theme
+*/
+
+/* 1. BURNING EFFECT */
+@keyframes burn-flame {
+  0%   { text-shadow: 0 -2px 4px #ffda44, 0 -4px 8px #ff922b, 0 -8px 12px #fa5252; }
+  25%  { text-shadow: 1px -2px 3px #ffda44, 0 -5px 9px #ff922b, -1px -9px 14px #fa5252; }
+  50%  { text-shadow: -1px -2px 5px #ffda44, -1px -4px 8px #ff922b, 1px -8px 13px #fa5252; }
+  75%  { text-shadow: 0 -2px 4px #ffda44, 1px -5px 9px #ff922b, 2px -9px 13px #fa5252; }
+  100% { text-shadow: 1px -2px 3px #ffda44, 0 -4px 8px #ff922b, -1px -8px 12px #fa5252; }
+}
+
+.effect-burn {
+  color: #e03131; /* Base color: Red */
+  animation: burn-flame 0.4s infinite alternate ease-in-out;
+  transform-origin: bottom;
+}
+
+/* 2. NEON / FLICKER EFFECT */
+@keyframes flicker-glow {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: 
+      0 0 4px rgba(168, 85, 247, 0.3),
+      0 0 8px rgba(59, 130, 246, 0.3),
+      0 0 12px rgba(168, 85, 247, 0.1);
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+    opacity: 0.6;
+  }
+}
+
+.effect-flicker {
+  color: #4c1d95; /* Base color: Deep Purple */
+  background-image: linear-gradient(to right, #7c3aed, #2563eb);
+  -webkit-background-clip: text;
+  background-clip: text;
+  /* For fallback/text-shadow combo */
+  animation: flicker-glow 4s infinite step-end;
+}
