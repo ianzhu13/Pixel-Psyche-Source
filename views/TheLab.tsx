@@ -25,9 +25,11 @@ const TheLab: React.FC = () => {
     setSources([]);
 
     try {
+      // In Vite config we polyfilled process.env.API_KEY
       const apiKey = process.env.API_KEY;
+      
       if (!apiKey) {
-        setAiResponse("Error: API_KEY is not set in environment variables.");
+        setAiResponse("Error: API_KEY is not set. Please add API_KEY to your environment variables.");
         return;
       }
 
@@ -40,7 +42,8 @@ const TheLab: React.FC = () => {
         },
       });
 
-      setAiResponse(response.text);
+      // Handle potential undefined text response safely
+      setAiResponse(response.text || "No text response generated.");
       
       const groundingChunks = response.candidates?.[0]?.groundingMetadata?.groundingChunks;
       if (groundingChunks) {
